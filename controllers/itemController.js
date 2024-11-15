@@ -1,21 +1,7 @@
-const Item = require('../models/item');
+import Item from '../models/item.js';
 
-exports.createItem = async (req, res) => {
-  try {
-    const item = await Item.create(req.body);
-    res.status(201).json({
-      success: true,
-      data: item
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      error: error.message
-    });
-  }
-};
-
-exports.getItems = async (req, res) => {
+// patrick
+export const getItems = async (req, res) => {
   try {
     const items = await Item.find();
     res.status(200).json({
@@ -31,7 +17,7 @@ exports.getItems = async (req, res) => {
   }
 };
 
-exports.getItemById = async (req, res) => {
+export const getItemById = async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
     if (!item) {
@@ -52,7 +38,24 @@ exports.getItemById = async (req, res) => {
   }
 };
 
-exports.updateItem = async (req, res) => {
+// benjamin
+export const createItem = async (req, res) => {
+  try {
+    const item = await Item.create(req.body);
+    res.status(201).json({
+      success: true,
+      data: item
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+};
+
+// hanane
+export const updateItem = async (req, res) => {
   try {
     const item = await Item.findByIdAndUpdate(
       req.params.id,
@@ -80,7 +83,8 @@ exports.updateItem = async (req, res) => {
   }
 };
 
-exports.deleteItem = async (req, res) => {
+// nico
+export const deleteItem = async (req, res) => {
   try {
     const item = await Item.findByIdAndDelete(req.params.id);
     if (!item) {

@@ -1,7 +1,8 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const connectDB = require('./config/db');
-const errorHandler = require('./middlewares/errorHandler');
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+import errorHandler from './middlewares/errorHandler.js';
+import itemsRoutes from './routes/items.js';
 
 // Charger les variables d'environnement
 dotenv.config();
@@ -15,7 +16,7 @@ const app = express();
 app.use(express.json());
 
 // Routes
-app.use('/api/items', require('./routes/items'));
+app.use('/api/items', itemsRoutes);
 
 // Middleware de gestion des erreurs
 app.use(errorHandler);
